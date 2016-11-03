@@ -33,5 +33,18 @@ namespace ParseIni.Tests
         {
             Lexer lexer = new Lexer(@"C:\ThisDoesNotExistEver.ini");
         }
+
+        [TestMethod()]
+        public void CommentFollowedByPrimaryKey()
+        {
+            List<string> exampleIniFile = new List<string>
+            {
+                "; comment in an ini file",
+                ";followed by another comment",
+                "[FollowedByAKey]"
+            };
+
+            Lexer lexer = new Lexer(exampleIniFile.ToArray());
+        }
     }
 }

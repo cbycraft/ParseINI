@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace ParseIni
 {
-    public class StateLexerString : IState
+    internal class LexerStateComment : ILexerState
     {
-        public void StateChange(StateContext stateContext)
+        char currentCharacter;
+
+        public void StateChange(LexerStateHandle stateContext)
         {
 
         }

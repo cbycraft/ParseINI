@@ -24,16 +24,14 @@ namespace ParseIni
 
         public Lexer(string[] fileAsStringArray)
         {
-
-        }
-
-        internal enum Tokens
-        {
-            String,
-            OpenSquareBrace,
-            CloseSquareBrace,
-            EqualSign,
-            Unknown
+            LexerStateHandle context = new LexerStateHandle(new LexerStateLineStart());
+            foreach(string currentLine in fileAsStringArray)
+            {
+                foreach(char currentCharacter in currentLine.ToCharArray())
+                {
+                    context.StateRequest(currentCharacter);
+                }
+            }
         }
     }
 }

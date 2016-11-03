@@ -7,8 +7,8 @@
     <ProjectGuid>{57D0EFC8-9D78-4B1F-8ACB-27244BA35DB2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ParseINI</RootNamespace>
-    <AssemblyName>ParseINI</AssemblyName>
+    <RootNamespace>ParseIni</RootNamespace>
+    <AssemblyName>ParseIni</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -41,12 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IState.cs" />
+    <Compile Include="ILexerState.cs" />
     <Compile Include="Lexer.cs" />
+    <Compile Include="LexerTokenNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StateContext.cs" />
-    <Compile Include="StateLexerCharacter.cs" />
-    <Compile Include="StateLexerString.cs" />
+    <Compile Include="LexerStateHandle.cs" />
+    <Compile Include="LexerStateComment.cs" />
+    <Compile Include="LexerStateLineStart.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
