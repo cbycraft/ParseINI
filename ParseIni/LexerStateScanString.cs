@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ParseIni
 {
-    internal class LexerStateLineStart : ILexerState
+    internal class LexerStateScanString : ILexerState
     {
         public void StateChange(LexerStateHandle stateContext)
         {
@@ -14,10 +14,6 @@ namespace ParseIni
             {
                 case ';':
                     stateContext.CurrentState = new LexerStateComment();
-                    break;
-                case '[':
-                    stateContext.TokenLine.Add(new LexerTokenNode(LexerTokenNode.Token.OpenSquareBrace, "[", stateContext.LineNumber, stateContext.CharacterNumber));
-                    stateContext.CurrentState = new LexerStateScanString();
                     break;
                 default:
                     break;

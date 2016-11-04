@@ -39,9 +39,9 @@ namespace ParseIni.Tests
         {
             List<string> exampleIniFile = new List<string>
             {
-                "; comment in an ini file",
-                ";followed by another comment",
-                "[FollowedByAKey]"
+                "; comment in an ini file"+System.Environment.NewLine,
+                ";followed by another comment"+System.Environment.NewLine,
+                "[FollowedByAKey]"+System.Environment.NewLine
             };
 
             Lexer lexer = new Lexer(exampleIniFile.ToArray());

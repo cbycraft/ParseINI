@@ -17,11 +17,17 @@ namespace ParseIni
             this.tokenLine = new List<LexerTokenNode>();
             this.tokenLines = new List<LexerTokenNode[]>();
             this.CurrentCharacter = '\0';
+            this.LineNumber = 0;
+            this.CharacterNumber = 0;
         }
 
         internal ILexerState CurrentState { get; set; }
 
         internal char CurrentCharacter { get; set; }
+
+        internal int LineNumber { get; set; }
+
+        internal int CharacterNumber { get; set; }
 
         internal List<LexerTokenNode> TokenLine
         {
@@ -41,6 +47,7 @@ namespace ParseIni
 
         internal void StateRequest(char currentCharacter)
         {
+            this.CharacterNumber = this.CharacterNumber + 1;
             this.CurrentCharacter = currentCharacter;
             this.CurrentState.StateChange(this);
         }
