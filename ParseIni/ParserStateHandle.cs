@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace ParseIni
 {
-    internal class LexerStateHandle
+    internal class ParserStateHandle
     {
         private List<LexerTokenNode> tokenLine;
         private List<LexerTokenNode[]> tokenLines;
 
-        internal LexerStateHandle(ILexerState startingState)
+        internal ParserStateHandle(IParseState startingState)
         {
             this.CurrentState = startingState;
             this.tokenLine = new List<LexerTokenNode>();
@@ -21,7 +21,7 @@ namespace ParseIni
             this.CharacterNumber = 0;
         }
 
-        internal ILexerState CurrentState { get; set; }
+        internal IParseState CurrentState { get; set; }
 
         internal char CurrentCharacter { get; set; }
 

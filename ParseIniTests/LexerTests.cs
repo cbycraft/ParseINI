@@ -44,6 +44,18 @@ namespace ParseIni.Tests
                 "[FollowedByAKey]"+System.Environment.NewLine
             };
 
+            List<LexerTokenNode> expectedOutputLine1 = new List<LexerTokenNode>
+            {
+                new LexerTokenNode(LexerTokenNode.Token.OpenSquareBrace, "[", 3, 1),
+                new LexerTokenNode(LexerTokenNode.Token.String, "FollowedByAKey", 3, 2),
+                new LexerTokenNode(LexerTokenNode.Token.CloseSquareBrace, "]", 3, 16)
+            };
+
+            List<LexerTokenNode[]> expectedOutputLines = new List<LexerTokenNode[]>
+            {
+                expectedOutputLine1.ToArray()
+            };
+
             Lexer lexer = new Lexer(exampleIniFile.ToArray());
         }
     }

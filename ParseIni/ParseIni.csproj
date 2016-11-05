@@ -41,15 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ILexerState.cs" />
+    <Compile Include="IParseState.cs" />
     <Compile Include="Lexer.cs" />
-    <Compile Include="LexerStateScanCharacter.cs" />
-    <Compile Include="LexerStateBuildString.cs" />
-    <Compile Include="LexerStateReturn.cs" />
+    <Compile Include="ParseStateExample.cs" />
     <Compile Include="LexerTokenNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="LexerStateHandle.cs" />
-    <Compile Include="LexerStateComment.cs" />
+    <Compile Include="ParserStateHandle.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

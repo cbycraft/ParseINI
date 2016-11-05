@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace ParseIni
 {
-    internal struct LexerTokenNode
+    public struct LexerTokenNode
     {
         private Token tokenType;
         private string tokenValue;
         private int lineNumber;
         private int characterNumber;
 
-        internal LexerTokenNode(Token tokenType, string tokenValue, int lineNumber, int characterNumber)
+        public LexerTokenNode(Token tokenType, string tokenValue, int lineNumber, int characterNumber)
         {
             this.tokenType = tokenType;
             this.tokenValue = tokenValue;
@@ -21,7 +21,7 @@ namespace ParseIni
             this.characterNumber = characterNumber;
         }
 
-        internal Token TokenType
+        public Token TokenType
         {
             get
             {
@@ -29,7 +29,7 @@ namespace ParseIni
             }
         }
 
-        internal string TokenValue
+        public string TokenValue
         {
             get
             {
@@ -37,7 +37,7 @@ namespace ParseIni
             }
         }
 
-        internal int LineNumber
+        public int LineNumber
         {
             get
             {
@@ -45,7 +45,7 @@ namespace ParseIni
             }
         }
 
-        internal int CharacterNumber
+        public int CharacterNumber
         {
             get
             {
@@ -53,7 +53,7 @@ namespace ParseIni
             }
         }
 
-        internal enum Token
+        public enum Token
         {
             String,
             OpenSquareBrace,
