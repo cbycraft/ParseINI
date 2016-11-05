@@ -37,15 +37,11 @@ namespace ParseIni
             {
                 lineNumber++;
                 characterNumber = 0;
+                stringBufferCharacterIndex = 0;
 
-                foreach(char currentCharacter in currentLine.ToCharArray())
+                foreach (char currentCharacter in currentLine.ToCharArray())
                 {
                     characterNumber++;
-
-                    if (stringBuffer == "") //Allows for error messages to index at start of string
-                    {
-                        stringBufferCharacterIndex = characterNumber;
-                    }
 
                     if (currentLineIsAComment) //If this line is a comment, break and go to next lline
                     {
@@ -53,10 +49,15 @@ namespace ParseIni
                         break;
                     }
 
+                    if (stringBuffer == "") //Allows for error messages to index at start of string
+                    {
+                        stringBufferCharacterIndex = characterNumber;
+                    }
+
                     switch (currentCharacter)
                     {
                         case ';':
-                            if (characterNumber == 0) //If a comment, break out of reading string - throws away comment.
+                            if (characterNumber == 1) //If a comment, break out of reading string - throws away comment.
                             {
                                 currentLineIsAComment = true;
                             }
@@ -66,28 +67,28 @@ namespace ParseIni
                             }
                             break;
                         case '[':
-                            ClearStringBufferIfNotEmpty(ref stringBuffer, listOfTokens, lineNumber, characterNumber);
+                            ClearStringBufferIfNotEmpty(ref stringBuffer, listOfTokens, lineNumber, stringBufferCharacterIndex);
                             listOfTokens.Add(new LexerTokenNode(LexerTokenNode.Token.OpenSquareBrace, "[", lineNumber, characterNumber));
                             break;
                         case ']':
-                            ClearStringBufferIfNotEmpty(ref stringBuffer, listOfTokens, lineNumber, characterNumber);
+                            ClearStringBufferIfNotEmpty(ref stringBuffer, listOfTokens, lineNumber, stringBufferCharacterIndex);
                             listOfTokens.Add(new LexerTokenNode(LexerTokenNode.Token.CloseSquareBrace, "]", lineNumber, characterNumber));
                             break;
                         case '=':
-                            ClearStringBufferIfNotEmpty(ref stringBuffer, listOfTokens, lineNumber, characterNumber);
+                            ClearStringBufferIfNotEmpty(ref stringBuffer, listOfTokens, lineNumber, stringBufferCharacterIndex);
                             listOfTokens.Add(new LexerTokenNode(LexerTokenNode.Token.EqualSign, "=", lineNumber, characterNumber));
                             break;
                         case ' ': //Throw out white space
-                            ClearStringBufferIfNotEmpty(ref stringBuffer, listOfTokens, lineNumber, characterNumber);
+                            ClearStringBufferIfNotEmpty(ref stringBuffer, listOfTokens, lineNumber, stringBufferCharacterIndex);
                             break;
                         case '\t': //Throw out white space
-                            ClearStringBufferIfNotEmpty(ref stringBuffer, listOfTokens, lineNumber, characterNumber);
+                            ClearStringBufferIfNotEmpty(ref stringBuffer, listOfTokens, lineNumber, stringBufferCharacterIndex);
                             break;
                         case '\r': //For Windows style end of line, expect a carriage return
-                            ClearStringBufferIfNotEmpty(ref stringBuffer, listOfTokens, lineNumber, characterNumber);
+                            ClearStringBufferIfNotEmpty(ref stringBuffer, listOfTokens, lineNumber, stringBufferCharacterIndex);
                             break;
                         case '\n': //For Unix and Windows, expect a new line. Add as a token and clear the buffer in case Unix only.
-                            ClearStringBufferIfNotEmpty(ref stringBuffer, listOfTokens, lineNumber, characterNumber); //Added in case of Unix style line ending.
+                            ClearStringBufferIfNotEmpty(ref stringBuffer, listOfTokens, lineNumber, stringBufferCharacterIndex); //Added in case of Unix style line ending.
                             listOfTokens.Add(new LexerTokenNode(LexerTokenNode.Token.EndOfLine, System.Environment.NewLine, lineNumber, characterNumber));
                             break;
                         default: //Any other character will form a string token
@@ -106,11 +107,6 @@ namespace ParseIni
                 tokenLine.Add(new LexerTokenNode(LexerTokenNode.Token.String, stringBuffer, lineNumber, characterNumber));
                 stringBuffer = "";
             }
-        }
-
-        private static void CreateFlatListOfTokens()
-        {
-
         }
 
         public LexerTokenNode[] Tokens

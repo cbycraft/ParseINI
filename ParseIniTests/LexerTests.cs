@@ -44,19 +44,26 @@ namespace ParseIni.Tests
                 "[FollowedByAKey]"+System.Environment.NewLine
             };
 
-            List<LexerTokenNode> expectedOutputLine1 = new List<LexerTokenNode>
+            List<LexerTokenNode> expectedOutputLines = new List<LexerTokenNode>
             {
                 new LexerTokenNode(LexerTokenNode.Token.OpenSquareBrace, "[", 3, 1),
                 new LexerTokenNode(LexerTokenNode.Token.String, "FollowedByAKey", 3, 2),
-                new LexerTokenNode(LexerTokenNode.Token.CloseSquareBrace, "]", 3, 16)
-            };
-
-            List<LexerTokenNode[]> expectedOutputLines = new List<LexerTokenNode[]>
-            {
-                expectedOutputLine1.ToArray()
+                new LexerTokenNode(LexerTokenNode.Token.CloseSquareBrace, "]", 3, 16),
+                new LexerTokenNode(LexerTokenNode.Token.EndOfLine, System.Environment.NewLine, 3, 18)
             };
 
             Lexer lexer = new Lexer(exampleIniFile.ToArray());
+            LexerTokenNode[] actualOutput = lexer.Tokens;
+            LexerTokenNode[] expectedOutput = expectedOutputLines.ToArray();
+
+            Assert.AreEqual(expectedOutput.Length, actualOutput.Length);
+            for(int index = 0; index < actualOutput.Length; index++)
+            {
+                Assert.AreEqual(expectedOutput[index].TokenType, actualOutput[index].TokenType);
+                Assert.AreEqual(expectedOutput[index].TokenValue, actualOutput[index].TokenValue);
+                Assert.AreEqual(expectedOutput[index].LineNumber, actualOutput[index].LineNumber);
+                Assert.AreEqual(expectedOutput[index].CharacterNumber, actualOutput[index].CharacterNumber);
+            }
         }
     }
 }
