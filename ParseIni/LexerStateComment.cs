@@ -12,8 +12,8 @@ namespace ParseIni
         {
             switch (stateContext.CurrentCharacter)
             {
-                case '\r':
-                    stateContext.CurrentState = new LexerStateReturn();
+                case '\n':
+                    stateContext.CurrentState = new LexerStateLineStart();
                     break;
                 default:
                     stateContext.CurrentState = new LexerStateComment();

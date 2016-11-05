@@ -29,6 +29,8 @@ namespace ParseIni
 
         internal int CharacterNumber { get; set; }
 
+        internal string WordBuffer { get; set; }
+
         internal List<LexerTokenNode> TokenLine
         {
             get

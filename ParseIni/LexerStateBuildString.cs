@@ -6,20 +6,24 @@ using System.Threading.Tasks;
 
 namespace ParseIni
 {
-    internal class LexerStateLineStart : ILexerState
+    internal class LexerStateBuildString : ILexerState
     {
         public void StateChange(LexerStateHandle stateContext)
         {
             switch (stateContext.CurrentCharacter)
             {
-                case ';':
-                    stateContext.CurrentState = new LexerStateComment();
+                case ']':
                     break;
-                case '[':
-                    stateContext.TokenLine.Add(new LexerTokenNode(LexerTokenNode.Token.OpenSquareBrace, "[", stateContext.LineNumber, stateContext.CharacterNumber));
-                    stateContext.CurrentState = new LexerStateScanString();
+                case '\r':
+                    break;
+                case '=':
+                    break;
+                case ' ':
+                    break;
+                case '\t':
                     break;
                 default:
+                    stateContext.WordBuffer = stateContext.WordBuffer + stateContext.CurrentCharacter.ToString();
                     break;
             }
         }
