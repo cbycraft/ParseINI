@@ -59,6 +59,7 @@ namespace ParseIni
             OpenSquareBrace,
             CloseSquareBrace,
             EqualSign,
+            WhiteSpace,
             EndOfLine,
             Unknown
         }

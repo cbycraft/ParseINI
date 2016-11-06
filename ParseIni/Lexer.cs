@@ -78,11 +78,13 @@ namespace ParseIni
                             ClearStringBufferIfNotEmpty(ref stringBuffer, listOfTokens, lineNumber, stringBufferCharacterIndex);
                             listOfTokens.Add(new LexerTokenNode(LexerTokenNode.Token.EqualSign, "=", lineNumber, characterNumber));
                             break;
-                        case ' ': //Throw out white space
+                        case ' ':
                             ClearStringBufferIfNotEmpty(ref stringBuffer, listOfTokens, lineNumber, stringBufferCharacterIndex);
+                            listOfTokens.Add(new LexerTokenNode(LexerTokenNode.Token.WhiteSpace, " ", lineNumber, characterNumber));
                             break;
                         case '\t': //Throw out white space
                             ClearStringBufferIfNotEmpty(ref stringBuffer, listOfTokens, lineNumber, stringBufferCharacterIndex);
+                            listOfTokens.Add(new LexerTokenNode(LexerTokenNode.Token.WhiteSpace, "\t", lineNumber, characterNumber));
                             break;
                         case '\r': //For Windows style end of line, expect a carriage return
                             ClearStringBufferIfNotEmpty(ref stringBuffer, listOfTokens, lineNumber, stringBufferCharacterIndex);
