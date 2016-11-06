@@ -43,7 +43,7 @@ namespace ParseIni
                 {
                     characterNumber++;
 
-                    if (currentLineIsAComment) //If this line is a comment, break and go to next lline
+                    if (currentLineIsAComment) //If this line is a comment, break and go to next line
                     {
                         currentLineIsAComment = false;
                         break;
@@ -91,6 +91,7 @@ namespace ParseIni
                             break;
                         case '\n': //For Unix and Windows, expect a new line. Add as a token and clear the buffer in case Unix only.
                             ClearStringBufferIfNotEmpty(ref stringBuffer, listOfTokens, lineNumber, stringBufferCharacterIndex); //Added in case of Unix style line ending.
+                            characterNumber--; //Don't count this character
                             listOfTokens.Add(new LexerTokenNode(LexerTokenNode.Token.EndOfLine, System.Environment.NewLine, lineNumber, characterNumber));
                             break;
                         default: //Any other character will form a string token
@@ -99,6 +100,9 @@ namespace ParseIni
                     }
                 }
             }
+            ClearStringBufferIfNotEmpty(ref stringBuffer, listOfTokens, lineNumber, stringBufferCharacterIndex);
+            characterNumber++; //Need to count one past last character to be at end of file char
+            listOfTokens.Add(new LexerTokenNode(LexerTokenNode.Token.EndOfFile, "0", lineNumber, characterNumber));
             tokens = listOfTokens.ToArray();
         }
 

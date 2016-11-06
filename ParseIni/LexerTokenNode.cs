@@ -61,6 +61,7 @@ namespace ParseIni
             EqualSign,
             WhiteSpace,
             EndOfLine,
+            EndOfFile,
             Unknown
         }
     }
