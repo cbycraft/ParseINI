@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace ParseIni
 {
-    internal interface IParseState
+    public interface IParseStatePattern
     {
-        void StateChange(ParserStateHandle lexerStateHandle);
+        void EvaluateState(ParseStatePatternHandle lexerStateHandle);
     }
 }
