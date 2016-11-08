@@ -39,6 +39,11 @@ namespace ParseIni
                 characterNumber = 0;
                 stringBufferCharacterIndex = 0;
 
+                if (currentLine == "")
+                {
+                    continue;
+                }
+
                 foreach (char currentCharacter in currentLine.ToCharArray())
                 {
                     characterNumber++;

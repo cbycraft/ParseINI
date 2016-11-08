@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ParseIni
 {
@@ -24,7 +21,14 @@ namespace ParseIni
         public void StateRequest(LexerTokenNode currentToken)
         {
             this.CurrentToken = currentToken;
-            this.CurrentState.EvaluateState(this);
+            try
+            {
+                this.CurrentState.EvaluateState(this);
+            }
+            catch(Exception exception)
+            {
+                throw exception;
+            }
         }
     }
 }
