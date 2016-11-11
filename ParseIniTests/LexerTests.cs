@@ -34,38 +34,6 @@ namespace ParseIni.Tests
             Lexer lexer = new Lexer(@"C:\ThisDoesNotExistEver.ini");
         }
 
-        //[TestMethod()]
-        //public void LexerTestSimple()
-        //{
-        //    string[] exampleIniFile = new string[]
-        //    {
-        //        "; comment in an ini file"+System.Environment.NewLine,
-        //        ";followed by another comment"+System.Environment.NewLine,
-        //        "[FollowedByAKey]"+System.Environment.NewLine
-        //    };
-
-        //    LexerTokenNode[] expectedOutputLines = new LexerTokenNode[]
-        //    {
-        //        new LexerTokenNode(LexerTokenNode.Token.OpenSquareBrace, "[", 3, 1),
-        //        new LexerTokenNode(LexerTokenNode.Token.String, "FollowedByAKey", 3, 2),
-        //        new LexerTokenNode(LexerTokenNode.Token.CloseSquareBrace, "]", 3, 16),
-        //        new LexerTokenNode(LexerTokenNode.Token.EndOfLine, System.Environment.NewLine, 3, 18)
-        //    };
-
-        //    Lexer lexer = new Lexer(exampleIniFile);
-        //    LexerTokenNode[] actualOutput = lexer.Tokens;
-        //    LexerTokenNode[] expectedOutput = expectedOutputLines;
-
-        //    Assert.AreEqual(expectedOutput.Length, actualOutput.Length);
-        //    for(int index = 0; index < actualOutput.Length; index++)
-        //    {
-        //        Assert.AreEqual(expectedOutput[index].TokenType, actualOutput[index].TokenType);
-        //        Assert.AreEqual(expectedOutput[index].TokenValue, actualOutput[index].TokenValue);
-        //        Assert.AreEqual(expectedOutput[index].LineNumber, actualOutput[index].LineNumber);
-        //        Assert.AreEqual(expectedOutput[index].CharacterNumber, actualOutput[index].CharacterNumber);
-        //    }
-        //}
-
         [TestMethod()]
         public void LexerTestWikipediaExample()
         {
@@ -183,6 +151,23 @@ namespace ParseIni.Tests
                 return;
             }
             Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void ParserTestPrimaryKey()
+        {
+            string[] exampleIniFile = new string[]
+            {
+                "; last modified 1 April 2001 by John Doe"+System.Environment.NewLine,
+                " [owner]"+System.Environment.NewLine,
+                "name = John Doe"+System.Environment.NewLine,
+                "organization=Acme Widgets Inc."+System.Environment.NewLine,
+                "[database.dat]"+System.Environment.NewLine,
+                "; use IP address in case network name resolution is not working"+System.Environment.NewLine,
+                "server= 192.0.2.62"+System.Environment.NewLine,
+                "port =143"+System.Environment.NewLine,
+                "file=\"payroll.dat\""
+            };
         }
     }
 }
