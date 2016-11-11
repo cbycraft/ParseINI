@@ -42,6 +42,9 @@
     <Compile Include="IParseStatePattern.cs" />
     <Compile Include="Lexer.cs" />
     <Compile Include="Parser.cs" />
+    <Compile Include="ParseStateExpectEqualSign.cs" />
+    <Compile Include="ParseStateLineStart.cs" />
+    <Compile Include="ParseStateReadPrimeKey.cs" />
     <Compile Include="ParseStateFileStart.cs" />
     <Compile Include="LexerTokenNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
