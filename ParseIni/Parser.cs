@@ -7,7 +7,6 @@ namespace ParseIni
 {
     public class Parser
     {
-        private Dictionary<string, Dictionary<string, string>> iniFileDictionary;
         private string fileName = "";
 
         public Parser(string fullAbsolutePathToIniFile)
@@ -32,9 +31,8 @@ namespace ParseIni
         public Parser(string[] fileAsStringArray)
         {
             Lexer lexedFile = new Lexer(fileAsStringArray);
-            this.iniFileDictionary = new Dictionary<string, Dictionary<string, string>>();
-            Stack<LexerTokenNode> tokenStack = new Stack<LexerTokenNode>(lexedFile.Tokens);
-            ParseStatePatternHandle statePatternHandle = new ParseStatePatternHandle(iniFileDictionary);
+            this.IniFileDictionary = new Dictionary<string, Dictionary<string, string>>();
+            ParseStatePatternHandle statePatternHandle = new ParseStatePatternHandle(this.IniFileDictionary);
             statePatternHandle.CurrentState = new ParseStateFileStart();
 
             foreach(LexerTokenNode currentToken in lexedFile.Tokens)

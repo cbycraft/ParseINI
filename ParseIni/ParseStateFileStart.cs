@@ -16,7 +16,7 @@ namespace ParseIni
                     case LexerTokenNode.Token.OpenSquareBrace:
                         if (statePatternHandle.CurrentToken.CharacterNumber == 1)
                         {
-
+                            statePatternHandle.CurrentState = new ParseStateReadPrimeKey();
                         }
                         else
                         {
