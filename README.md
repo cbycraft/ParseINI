@@ -37,13 +37,13 @@
     1. All secondary key values will be read from equal sign to end of line. Any character besides end of line will be added to the string. Once end of line is hit, the buffer is loaded as the value.
     
 ### Example INI file (https://en.wikipedia.org/wiki/INI_file)
-> ; last modified 1 April 2001 by John Doe
-> [owner] 
-> name=John Doe 
-> organization=Acme Widgets Inc. 
->
-> [database]
-> ; use IP address in case network name resolution is not working 
-> server=192.0.2.62    
-> port=143 
-> file="payroll.dat" 
+- ; last modified 1 April 2001 by John Doe
+- [owner] 
+- name=John Doe 
+- organization=Acme Widgets Inc. 
+-
+- [database]
+- ; use IP address in case network name resolution is not working 
+- server=192.0.2.62    
+- port=143 
+- file="payroll.dat" 
