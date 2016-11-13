@@ -47,9 +47,9 @@ namespace ParseIni
                             if (statePatternHandle.IniFileDictionary.ContainsKey(statePatternHandle.CurrentPrimaryKey))
                             {
                                 statePatternHandle.CurrentSecondaryKey = statePatternHandle.StringBuffer;
-                                statePatternHandle.IniFileDictionary[statePatternHandle.CurrentPrimaryKey] = new Dictionary<string, string>();
                                 statePatternHandle.IniFileDictionary[statePatternHandle.CurrentPrimaryKey].Add(statePatternHandle.StringBuffer, "");
                                 statePatternHandle.StringBuffer = "";
+                                statePatternHandle.CurrentState = new ParseStateReadSubkeyValue();
                             }
                             else
                             {

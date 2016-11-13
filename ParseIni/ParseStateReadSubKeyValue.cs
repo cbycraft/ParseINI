@@ -34,7 +34,7 @@ namespace ParseIni
                 }
                 else
                 {
-                    statePatternHandle.StringBuffer = statePatternHandle.CurrentToken.TokenValue;
+                    statePatternHandle.StringBuffer = statePatternHandle.StringBuffer + statePatternHandle.CurrentToken.TokenValue;
                     statePatternHandle.CurrentState = new ParseStateReadSubkeyValue();
                 }
             }
